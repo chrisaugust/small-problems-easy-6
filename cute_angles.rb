@@ -41,19 +41,19 @@ require 'pry'
 
 class CuteAngles < Test::Unit::TestCase
   def test_dms
-    assert_equal( dms(30), "%(30°00'00\")")
-    assert_equal( dms(76.73), "%(76°43'48\")")
-    assert_equal( dms(254.6), "%(254°35'59\")")
-    assert_equal( dms(93.034773), "%(93°02'05\")")
-    assert_equal( dms(0), "%(0°00'00\")")
-    #assert_equal( dms(360), "%(360°00'00\")" || "%(0°00'00\")")
+    assert_equal( dms(30), %(30°00'00"))
+    assert_equal( dms(76.73), %(76°43'48"))
+    assert_equal( dms(254.6), %(254°35'59"))
+    assert_equal( dms(93.034773), %(93°02'05"))
+    assert_equal( dms(0), %(0°00'00"))
+    assert_equal( dms(360), %(360°00'00"))
   end
 end
 
 def dms(input_fl)
   degrees = input_fl.floor 
   if degrees > 0
-    minsec = (input_fl % degrees) * 60
+    minsec = (input_fl % 1) * 60
     minutes = minsec.floor
   else
     minutes = 0
@@ -70,5 +70,5 @@ def dms(input_fl)
 
   seconds = seconds.to_s.rjust(2, "0")
 
-  return_str = "%(#{degrees}°#{minutes}'#{seconds}\")"
+  return_str = %(#{degrees}°#{minutes}'#{seconds}")
 end
